@@ -1,3 +1,2 @@
 ###### A-Noe-NU.github.io
-#this is a subtitle
-text
+this is a subtitle
