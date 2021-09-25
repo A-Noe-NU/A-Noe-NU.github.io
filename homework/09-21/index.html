@@ -5,59 +5,116 @@
     <title>SVG-Kandinsky</title>
   </head>
   <body>
-<!-- This is the canvas size and establishes the radial gradient -->
-        <svg width="1250px" height="550px" viewBox="0 0 1250 550" fill="antiquewhite" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="myGradient1">
-              <stop offset="10%" stop-color="turquoise" />
-              <stop offset="100%" stop-color="antiquewhite" />
-            </radialGradient>
-          </defs>
+<!-- This is the canvas size and establishes the radial gradients -->
+    <svg width="1250px" height="550px" viewBox="0 0 1250 550" fill="moccasin" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="myGradient1">
+          <stop offset="10%" stop-color="turquoise" />
+          <stop offset="100%" stop-color="palegoldenrod" />
+        </radialGradient>
+        <radialGradient id="myGradient2">
+            <stop offset="2%" stop-color="turquoise" />
+            <stop offset="80%" stop-color="palegoldenrod" />
+          </radialGradient>
+          <radialGradient id="myGradient3">
+            <stop offset="2%" stop-color="green" />
+            <stop offset="80%" stop-color="palegoldenrod" />
+          </radialGradient>
+      </defs>
 
 <!-- This is the initial background -->
-            <rect x="0" y="0" width="100%" height="100%" fill="antiquewhite" />
+      <rect x="0" y="0" width="100%" height="100%" fill="palegoldenrod" />
 
 <!-- This is the stacked circle in the upper left, as well as the smaller white circle off of its bottom left -->
-            <circle cx="180px" cy="160px" r="140px" fill="url('#myGradient1')" />
-            <circle cx="180px" cy="160px" r="95px" fill=black opacity=1 />
-            <circle cx="180px" cy="160px" r="100px" fill=antiquewhite opacity=1 />
-            <circle cx="120px" cy="260px" r="45px" fill=white stroke=black stroke-opacity=1 fill-opacity=1 stroke-width="3px" />
-            <circle cx="180px" cy="160px" r="100px" fill=black fill-opacity=0 stroke=black stroke-opacity=1 stroke-width="6px" />
-            <circle cx="180px" cy="160px" r="100px" fill=black fill-opacity=0 stroke=black stroke-opacity=1 stroke-width="6px" />
-            <circle cx="180px" cy="160px" r="100px" fill=black fill-opacity=0 stroke=black stroke-opacity=1 stroke-width="6px" />
-            <circle cx="180px" cy="160px" r="100px" fill=black fill-opacity=0 stroke=black stroke-opacity=1 stroke-width="6px" />
-            <circle cx="180px" cy="160px" r="100px" fill=black fill-opacity=0 stroke=black stroke-opacity=1 stroke-width="6px" />
-            <circle cx="120px" cy="320px" r="40px" fill=white opacity=0.2 />
-            <circle cx="180px" cy="160px" r="85px" fill=black opacity=1 />
-            <circle cx="180px" cy="160px" r="60px" fill=steelblue opacity=1 />
-            <circle cx="180px" cy="160px" r="50px" fill=black opacity=1 />
-            <circle cx="180px" cy="160px" r="40px" fill=turquoise opacity=1 />
-            <circle cx="180px" cy="160px" r="30px" fill=black opacity=1 />
+      <circle cx="180px" cy="160px" r="140px" fill="url('#myGradient1')" />
+      <circle cx="180px" cy="160px" r="95px" fill=black opacity=1 />
+      <circle cx="180px" cy="160px" r="100px" fill=antiquewhite opacity=1 />
+      <circle cx="120px" cy="260px" r="45px" fill=white stroke=black stroke-opacity=1 fill-opacity=1 stroke-width="3px" />
+      <circle cx="180px" cy="160px" r="100px" fill=black fill-opacity=0 stroke=black stroke-opacity=1 stroke-width="6px" />
+      <circle cx="180px" cy="160px" r="100px" fill=black fill-opacity=0 stroke=black stroke-opacity=1 stroke-width="6px" />
+      <circle cx="180px" cy="160px" r="100px" fill=black fill-opacity=0 stroke=black stroke-opacity=1 stroke-width="6px" />
+      <circle cx="180px" cy="160px" r="100px" fill=black fill-opacity=0 stroke=black stroke-opacity=1 stroke-width="6px" />
+      <circle cx="180px" cy="160px" r="100px" fill=black fill-opacity=0 stroke=black stroke-opacity=1 stroke-width="6px" />
+      <circle cx="180px" cy="160px" r="85px" fill=black opacity=1 />
+      <circle cx="180px" cy="160px" r="60px" fill=steelblue opacity=1 />
+      <circle cx="180px" cy="160px" r="50px" fill=black opacity=1 />
+      <circle cx="180px" cy="160px" r="40px" fill=turquoise opacity=1 />
+      <circle cx="180px" cy="160px" r="30px" fill=black opacity=1 />
 
 <!-- These are the lines off of the right of the top-left stacked circle-->
-            <line x1="275" y1="140" x2="360" y2="120" stroke="black" stroke-width="3px"/>
-            <line x1="280" y1="170" x2="360" y2="170" stroke="black" stroke-width="3px"/>
-            <line x1="275" y1="180" x2="360" y2="180" stroke="black" stroke-width="6px"/>
-            <line x1="295" y1="120" x2="295" y2="260" stroke="black" stroke-width="3px"/>
+      <line x1="275" y1="140" x2="360" y2="120" stroke="black" stroke-width="3px"/>
+      <line x1="280" y1="170" x2="360" y2="170" stroke="black" stroke-width="3px"/>
+      <line x1="275" y1="180" x2="360" y2="180" stroke="black" stroke-width="6px"/>
+      <line x1="295" y1="120" x2="295" y2="260" stroke="black" stroke-width="3px"/>
 
 <!-- These are the three small dots-->
-            <circle cx="175px" cy="320px" r="5px" fill=goldenrod opacity=1 />
-            <circle cx="200px" cy="315px" r="5px" fill=goldenrod opacity=1 />
-            <circle cx="150px" cy="325px" r="5px" fill=goldenrod opacity=1 />
+      <circle cx="175px" cy="320px" r="5px" fill=goldenrod opacity=1 />
+      <circle cx="200px" cy="315px" r="5px" fill=goldenrod opacity=1 />
+      <circle cx="150px" cy="325px" r="5px" fill=goldenrod opacity=1 />
 
-<!-- These are the half circles on the diagonal line, as well as the line and background rectangle-->
-            <circle cx="340px" cy="290px" r="87px" fill=black opacity=1 />
-            <circle cx="340px" cy="290px" r="80px" fill=crimson opacity=1 />
-            <circle cx="340px" cy="290px" r="73px" fill=white opacity=1 />
-            <circle cx="505px" cy="255px" r="87px" fill=black opacity=1 />
-            <circle cx="505px" cy="255px" r="80px" fill=goldenrod opacity=1 />
-            <circle cx="505px" cy="255px" r="73px" fill=white opacity=1 />
-            <line x1="225px" y1="310px" x2="600px" y2="230px" stroke="black" stroke-width="3px"/>
-            <rect x="155px" y="351px" width="500px" height="120px" transform="rotate(-12)" style="fill: antiquewhite;"/>  
+<!-- These are the half circles on the diagonal line, as well as the line that intersects horizontally and the background rectangle-->
+      <circle cx="340px" cy="290px" r="87px" fill=black opacity=1 />
+      <circle cx="340px" cy="290px" r="80px" fill=crimson opacity=1 />
+      <circle cx="340px" cy="290px" r="73px" fill=white opacity=1 />
+      <circle cx="505px" cy="255px" r="87px" fill=black opacity=1 />
+      <circle cx="505px" cy="255px" r="80px" fill=goldenrod opacity=1 />
+      <circle cx="505px" cy="255px" r="73px" fill=white opacity=1 />
 
-        </svg>
-    <br><br>
-    
+<!-- This is the small background rectangle and the turquoise gradient-->
+      <rect x="155px" y="351px" width="500px" height="120px" transform="rotate(-12)" style="fill: palegoldenrod;"/>  
+      <circle cx="650px" cy="245px" r="62px" fill="url('#myGradient2')" />
+
+<!-- These are the three smaller circles along the bottom of the diagonal line as well as the long vertical diagonal line-->
+      <circle cx="348px" cy="329px" r="45px" fill=black opacity=1 />
+      <circle cx="348px" cy="329px" r="40px" fill=coral opacity=1 />
+      <circle cx="348px" cy="329px" r="35px" fill=white opacity=1 />
+      <circle cx="432px" cy="311px" r="45px" fill=black opacity=1 />
+      <circle cx="432px" cy="311px" r="40px" fill=darkorange opacity=1 />
+      <circle cx="432px" cy="311px" r="35px" fill=white opacity=1 />
+      <circle cx="517px" cy="293px" r="45px" fill=black opacity=1 />
+      <circle cx="517px" cy="293px" r="40px" fill=goldenrod opacity=1 />
+      <circle cx="517px" cy="293px" r="35px" fill=white opacity=1 />
+      <line x1="470px" y1="40px" x2="550px" y2="450px" stroke="black" stroke-width="3px"/>
+
+<!-- This is the bottom left triangle-->
+      <polygon points="420,405 380,460 420,470" style="fill:black; fill-opacity:0; stroke:black; stroke-width:24px" />
+
+<!-- This is the two curved lines off the top-->
+      <path d="M 360 210 C 400 130, 440 90, 580 90" stroke="black" stroke-width=4px fill="transparent"/>
+      <path d="M 360 210 C 400 130, 440 40, 580 25" stroke="black" stroke-width=4px fill="transparent"/>
+
+<!-- This is the three parallel lines on the bottom and their yellow drop shadows-->
+      <line x1="506px" y1="364px" x2="576px" y2="349px" stroke="black" stroke-width="3px"/>
+      <line x1="512px" y1="388px" x2="582px" y2="373px" stroke="black" stroke-width="3px"/>
+      <line x1="509px" y1="376px" x2="579px" y2="361px" stroke="black" stroke-width="3px"/>
+      <rect x="405px" y="482px" width="60px" height="10px" transform="rotate(-12)" opacity=0.2 style="fill: goldenrod;"/>  
+      <rect x="405px" y="468px" width="60px" height="10px" transform="rotate(-12)" opacity=0.2 style="fill: goldenrod;"/>  
+      <rect x="405px" y="455px" width="60px" height="10px" transform="rotate(-12)" opacity=0.2 style="fill: goldenrod;"/>  
+
+<!-- This is the long diagonal line and the larger background rectangle, as well as the three diagonal parallel lines in top middle-->
+      <line x1="225px" y1="310px" x2="700px" y2="209px" stroke="black" stroke-width="3px"/>
+      <rect x="527px" y="228px" width="120px" height="120px" transform="rotate(-12)" style="fill: palegoldenrod;"/>  
+      <line x1="573px" y1="210px" x2="628px" y2="43px" stroke="black" stroke-width="2px"/>
+      <line x1="566px" y1="200px" x2="619px" y2="40px" stroke="black" stroke-width="2px"/>
+      <line x1="559px" y1="190px" x2="610px" y2="37px" stroke="black" stroke-width="2px"/>
+
+<!-- This is the three small circles in the top middle, and dots on the white one-->
+      <circle cx="550px" cy="128px" r="15px" fill=white opacity=1 stroke-width="2px" stroke="green"/>
+      <circle cx="640px" cy="95px" r="12px" fill=orange fill-opacity=0.7 stroke-width="2px" stroke="darkorange"/>
+      <circle cx="680px" cy="50px" r="40px" fill="url('#myGradient3')" />
+      <circle cx="680px" cy="50px" r="20px" fill=white fill-opacity=1 stroke-width="2px" stroke="black"/>
+      <line x1="682px" y1="52px" x2="683px" y2="53px" stroke="black" stroke-width="3px"/>
+      <line x1="686px" y1="56px" x2="688px" y2="57px" stroke="black" stroke-width="3px"/>
+      <line x1="690px" y1="52px" x2="692px" y2="53px" stroke="black" stroke-width="3px"/>
+      <line x1="678px" y1="56px" x2="678px" y2="57px" stroke="black" stroke-width="3px"/>
+
+<!-- This is the paperclip line-->
+      <line x1="628px" y1="70px" x2="808px" y2="99px" stroke="black" stroke-width="4.5px"/>
+      <line x1="715px" y1="45px" x2="808px" y2="99px" stroke="black" stroke-width="4.5px"/>
+
+    </svg>
+
+
   </body>
     
 </html>
