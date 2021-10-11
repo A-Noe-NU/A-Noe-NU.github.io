@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>JavaScript test page.</title>
+    <script src="saytext.js"></script>
+  </head>
+  <body>
+  <h1 id="title">Hello Username</h1>
+    <br><br>
+        <script>
+
+            // Math
+            var myNumber = 42;
+            console.log(myNumber);
+
+            // More math
+            myNumber = myNumber / 0;
+            console.log(myNumber);
+
+            //Strings
+            var myString = "\"JavaScript\" is cool";
+            console.log("D3 and " + myString + " " + myNumber);
+
+            //Boolean logic
+            var bigNumber = myNumber > 100.1;
+            console.log(bigNumber);
+
+            //Arrays... this will print out the word two
+            var myArray = ["one", "two", "three", "four"];
+            console.log(myArray[1], myArray[3]);
+            console.log(myArray.length);
+
+            // Objects
+            var myObject1 = {
+                name: "Andrew",
+                color: "red",
+                hasPet: false
+            };
+
+            console.log(myObject1.name, myObject1.hasPet);
+
+            var myObject2 = {
+                name: "Dave",
+                color: "purple",
+                hasPet: true
+            }
+
+            var objectArray = [myObject1, myObject2]
+
+            console.log(objectArray[1])
+
+            //Functions
+            var sayHello = function() {
+                console.log("Hello");
+            }
+            sayHello();
+
+
+
+            //Function returns
+            var plusTen = function(num) {
+                return num + 10;
+            }
+
+            var thirty = plusTen(20);
+
+            console.log(thirty);
+
+            //var daveString = sayText("Dave");
+            //var luisString = sayText("Luis");
+            //console.log(daveString, luisString);
+
+            //Conditional statements
+            var myNumber = 12;
+            if (myNumber >= 10) {
+                console.log("greater than 10!");
+            }
+            //else if () {}
+            else {
+                console.log("less than 10!");
+            }
+
+            //Document Access
+            var pageTitle = document.getElementById("title");
+            pageTitle.innerHTML = "test it";
+            pageTitle.style.color = "red";
+        </script>
+
+
+  </body>
+
+</html>

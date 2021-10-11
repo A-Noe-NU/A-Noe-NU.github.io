@@ -1,0 +1,9 @@
+span {
+    color: rgb(70, 27, 110);
+    font-style: normal;
+    font-size: 32px;
+    font-family:'Segoe UI';
+  }
+  a#newHomework {
+    color: rgb(85, 19, 170);
+  }
