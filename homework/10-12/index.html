@@ -34,30 +34,30 @@
         var data1 = [
             {
                 sqcolor: "pnk",
-                value: 42648693
+                value: 150
             },
             {
                 sqcolor: "prple",
-                value: 9876543
+                value: 250
             },
             {
                 sqcolor: "rd",
-                value: 983342343432
+                value: 350
             }
         ];
 
         var data2 = [
             {
                 sqcolor: "grn",
-                value: 138603857
+                value: 200
             },
             {
                 sqcolor: "blu",
-                value: 1234567
+                value: 300
             },
             {
                 sqcolor: "trq",
-                value: 1234567
+                value: 400
             }
         ];
 
@@ -67,10 +67,11 @@
                     .data(dataArray, function(d) {
                         return d.sqcolor;
                     });
+
             function rectPosition(){
                 return Math.random() * 100 + 50;
             }
-
+            
                 rects.enter().append("rect")
                     .attr("fill", function(d) {
                         if (d.sqcolor == "pnk") {
@@ -96,7 +97,9 @@
                         return d.sqcolor;
                     })
                     .attr("x", "500")
-                    .attr("y", rectPosition)
+                    .attr("y", function(d) {
+                        return d.value;
+                    })
                     .attr("width", "100")
                     .attr("height", "100")
                     .transition().duration(1000)
