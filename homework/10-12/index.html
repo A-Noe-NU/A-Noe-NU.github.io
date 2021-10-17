@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>D3</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+        .myText {
+            font-family: "Franklin Gothic Medium Cond";
+            font-size: 72px;
+            font-style: normal;
+            font-weight: bold;
+            font-optical-sizing: auto;
+        }
+    </style>
+  </head>
+<body>
+    <h1 id="title">Squares</h1>
+    <svg id="rect-viz" width="1050px" height="150px" viewBox="0 0 1250 550" fill="gray" xmlns="http://www.w3.org/2000/svg">
+    </svg>
+    <br />
+    <button onclick="drawRects(data1); myFunction();">I want green, blue, and teal squares</button>
+    <button onclick="drawRects(data2); myFunction();">I want red, pink, and purple squares</button>
+
+    <script>
+        var title = d3.select("#title");
+        title
+            .style("color", "black")
+            .attr("class", "myText");
+
+        var color ="black";
+        
+        var data1 = [
+            {
+                sqcolor: "pnk",
+                value: 42648693
+            },
+            {
+                sqcolor: "prple",
+                value: 9876543
+            },
+            {
+                sqcolor: "rd",
+                value: 983342343432
+            }
+        ];
+
+        var data2 = [
+            {
+                sqcolor: "grn",
+                value: 138603857
+            },
+            {
+                sqcolor: "blu",
+                value: 1234567
+            },
+            {
+                sqcolor: "trq",
+                value: 1234567
+            }
+        ];
+
+            function drawRects(dataArray) {
+
+                var rects = d3.select("#rect-viz").selectAll("rect")
+                    .data(dataArray, function(d) {
+                        return d.sqcolor;
+                    });
+            function rectPosition(){
+                return Math.random() * 100 + 50;
+            }
+
+                rects.enter().append("rect")
+                    .attr("fill", function(d) {
+                        if (d.sqcolor == "pnk") {
+                            return "pink";
+                        }
+                        else if (d.sqcolor == "prple") {
+                            return "purple";
+                        }
+                        else if (d.sqcolor == "rd") {
+                            return "red";
+                        }
+                        else if (d.sqcolor == "grn") {
+                            return "green";
+                        }
+                        else if (d.sqcolor == "blu") {
+                            return "blue";
+                        }
+                        else if (d.sqcolor == "trq") {
+                            return "teal";
+                        }
+                    })
+                    .attr ("id", function(d) {
+                        return d.sqcolor;
+                    })
+                    .attr("x", "500")
+                    .attr("y", rectPosition)
+                    .attr("width", "100")
+                    .attr("height", "100")
+                    .transition().duration(1000)
+                        .attr("x", "25");
+
+                    rects
+                    .transition().duration(1000)
+                    .attr("y", rectPosition)
+                    .attr("x", rectPosition);
+
+                    rects.exit()
+                    .transition().duration(1000)
+                    .attr("width", "0")
+                    .remove();
+
+            }
+
+    </script>
+
+    <br>
+    <br>
+    <br>
+    <p id="onclicktext"; style="font-family:Franklin Gothic Medium";>
+    <script>
+    function myFunction() {
+      document.getElementById("onclicktext").innerHTML = "You can't always get what you want.";
+    }
+    </script>
+    </p>
+        </div>
+</body>
