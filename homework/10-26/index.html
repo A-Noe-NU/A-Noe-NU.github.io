@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>    
+
+  <body>
+    <p><font color="purple" face="Franklin, Geneva, sans-serif" size="+1">The data <strike>is</strike> are in the console.log.</font></p>
+    <br><br>
+    <script>
+      d3.csv("scad_data.csv", function(error, data) {
+        console.log(data);
+      });
+    </script>
+  </body>
+</html>
