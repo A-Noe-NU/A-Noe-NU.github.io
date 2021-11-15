@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <title>Africa SCA Data</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <p><p1 style=font-size:40px>Africa</p>
+      <h1><h1 style=font-size:60px>Social Conflict Analysis Database</h1>
+      <p1 style=font-size:40px>1990-2017</p1>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <p1 style=font-size:18px> <p1 style=font-style:italic>The Social Conflict Analysis (SCA) Database is maintained by the Robert Strauss Center for International Security 
+        <br>and Law at the University of Texas. It includes protests, riots, strikes, inter-communal conflict, government violence 
+        <br>against civilians, and other forms of social conflict not systematically tracked in other conflict datasets from 1990-2017.</p> 
+      </div>
+
+      <div>
+
+      </div>
+      <br>
+      <br>
+      <br>
+      <p><p1 style=font-size:24px> <p1 style=font-style:italic>Select a country to view data.</p>
+      <div class="section">
+
+        <svg id="chart1"></svg>
+      </div>
+      <div class="section">
+
+        <svg id="chart2"></svg>
+      </div>
+      <div class="section">
+
+        <svg id="chart3"></svg>
+      </div>
+      <div class="section">
+
+        <svg id="chart4"></svg>
+      </div>
+
+
+
+
+      <div id="tooltip">
+          <h2 id="title"></h2>
+          Value: <span id="value"></span>
+      </div>
+
+      <script src="./banner.js"></script>
+      <script src="./chart1.js"></script>
+      <script>
+        d3.csv("scad_data.csv", function(error, data) {
+          console.log(data);
+        });
+      </script>
+    </body>
+  </body>
+</html>

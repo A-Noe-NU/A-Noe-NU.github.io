@@ -1,0 +1,54 @@
+
+  #banner {
+    font-family: "Garamond";
+    text-align: left;
+    background-color: #00CC00;
+    background-image: url('https://raw.githubusercontent.com/A-Noe-NU/A-Noe-NU.github.io/main/banner.png');
+    background-position: 0% 0%;
+    background-size: cover;
+    padding: 20vh 10px;
+  }
+
+  body {
+    text-align: center;
+    margin: 0;
+  }
+
+  .section {
+    display: flex;
+    align-items: center;
+    padding: 50px;
+  }
+  
+  .section p {
+    flex: 1;
+  }
+  
+  .section svg {
+    border: 1px solid black;
+    flex: 1;
+    height: 600px;
+    width: 600px;
+    margin: 20px;
+  }
+
+  
+
+  @media (max-width: 800px) {
+    .section {
+      flex-direction: row;
+    }
+    .section svg {
+      flex: none;
+      width: 100%;
+    }
+  }
+
+  #tooltip {
+      background: white;
+      border: 1px solid black;
+      border-radius: 5px;
+    display: none;
+    padding: 5px;
+    position: absolute;
+  }
