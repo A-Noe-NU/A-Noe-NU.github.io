@@ -32,7 +32,22 @@
     margin: 20px;
   }
 
-  
+  .row {
+    display: flex;
+    flex: 1;
+    border: 1px solid black;
+    align-items: center;
+    height: 600px;
+    width: 600px;
+    margin: 20px;
+  }
+
+.row .section {
+  flex: 1;
+  height: 200px;
+  width: 200px;
+  margin: 20px;
+}
 
   @media (max-width: 800px) {
     .section {
