@@ -2,6 +2,19 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <style>
+
+      text {
+        font: 10px sans-serif;
+        text-anchor: middle;
+      }
+      
+      .node--hover circle {
+        stroke: #000;
+        stroke-width: 1.2px;
+      }
+      
+      </style>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <title>Africa SCA Data</title>
     <link rel="stylesheet" href="./styles.css" />
@@ -37,9 +50,11 @@
       <br>
       <p><p1 style=font-size:24px> <p1 style=font-style:italic>Select a country to view data.</p>
       <div class="section">
+    
+            <svg width="1000px" height="1000px"></svg>
 
-        <svg id="chart1"></svg>
       </div>
+
 <div class="row">
   <div class="section"></div>
   <div class="section"></div>
@@ -57,9 +72,53 @@
       <script src="./banner.js"></script>
       <script src="./chart1.js"></script>
       <script>
-        d3.csv("scad_data.csv", function(error, data) {
-          console.log(data);
+
+
+
+        d3.csv("scad_data.csv", function(error, data) 
+        {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            console.log("Africa SCA Data");
+        }
+
+        data.forEach(function(d) {
+            d.ndeath = parseFloat(d.ndeath);
+                    });
+
+        var data_by_country = d3.nest()
+            .key(function(d) {return d.countryname;})
+            .rollup(function(v) {
+              return {
+                cnt: v.length,
+                ndeathSum: d3.sum(v, function(d) {return d.ndeath; }),
+                values: v
+              };
+            })
+            .entries(data)
+            .map(function(d) {
+              return {
+                Country_Name: d.key,
+                Sum_of_nDeath: d.value.ndeathSum,
+                count: d.value.cnt,
+                values: d.value.values
+                };
+
+                
+              });
+
+        console.log("Data by Country", data_by_country);
+
+
+
+;
+
+        
+
         });
+        ;
       </script>
     </body>
   </body>

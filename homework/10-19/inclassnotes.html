@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Data</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+        .myText {
+            font-family: "Franklin Gothic Medium Cond";
+            font-size: 72px;
+            font-style: normal;
+            font-weight: bold;
+            font-optical-sizing: auto;
+        }
+    </style>
+  </head>
+<body>
+    <script>
+
+        d3.text("data.txt", function(error, data)
+            {
+                if (error) {
+                    console.log(error);
+                }
+                else {
+                    console.log("we've got data!");
+                    console.log(data);
+                }
+            });
+
+
+
+
+
+
+        d3.csv("data.csv", function(error, data) 
+                {
+                    data.forEach(function(row) {
+                        row.value = parseFloat(row.value);
+                    });
+
+                    var usData = data.filter(function(row) {
+                        return row.country == "usa";
+                    });
+                    console.log("usData", usData);
+                    console.log(data);
+                    var columnName = "value";
+                    var minimumValue = d3.min(data, function(row) {
+                        return row.value;
+                    console.log("min", minimumValue);
+                    });
+                    var groupedData = d3.nest()
+                        .key(function(d) {
+                       return d.country;
+                     })
+                    .entries(data);
+                    console.log("groupedData", groupedData);
+
+                    var nameMapping = {
+                        usa: "United States",
+                        rus: "Russia",
+                        chn: "China",
+                        mex: "Mexico"
+
+            };
+                    data.forEach(function(row) {
+                    row.fullName = nameMapping[row.country]
+            });
+        });
+
+
+
+
+
+        d3.json("data.json", function(error, data) 
+                {
+                    console.log(data);
+            });
+            var url = "https://datausa.io/api/data?measures=Population&year=latest";
+
+            d3.json(url, function(error, popData) {
+                console.log(popData);
+            });
+
+
+
+    </script>
+
+
+    <p>
+        
+    </p>
+</body>
+</html>
+

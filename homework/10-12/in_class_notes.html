@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>It's time for some D3</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+        .myText {
+            font-family: "Franklin Gothic Medium Cond";
+            font-size: 72px;
+            font-style: normal;
+            font-weight: bold;
+            font-optical-sizing: auto;
+        }
+    </style>
+  </head>
+<body>
+    <h1 id="title">Overlapping circles of success</h1>
+    <svg id="circle-viz">
+    </svg>
+    <br />
+    <button onclick="drawCircles(data1)">Data 1</button>
+    <button onclick="drawCircles(data2)">Data 2</button>
+
+    <script>
+        var title = d3.select("#title");
+        title
+            .style("color", "purple")
+            .attr("class", "myText");
+
+        var color ="purple";
+        
+        var data1 = [
+            {
+                country: "usa",
+                value: 12412341
+            },
+            {
+                country: "mex",
+                value: 5125123
+            }
+        ];
+
+        var data2 = [
+            {
+                country: "chn",
+                value: 789789789
+            },
+            {
+                country: "mex",
+                value: 5125123
+            }
+        ];
+
+            function drawCircles(dataArray) {
+
+                var circles = d3.select("#circle-viz").selectAll("circle")
+                    .data(dataArray, function(d) {
+                        return d.country;
+                    });
+            function circlePosition(){
+                return Math.random() * 100 + 50;
+            }
+
+                circles.enter().append("circle")
+                    .attr("fill", function(d) {
+                        if (d.country == "usa") {
+                            return "blue";
+                        }
+                        else if (d.country == "mex") {
+                            return "green";
+                        }
+                        else if (d.country == "chn") {
+                            return "red";
+                        }
+                    })
+                    .attr ("id", function(d) {
+                        return d.country;
+                    })
+                    .attr("cy", "100")
+                    .attr("cx", circlePosition)
+                    .attr("r", "0")
+                    .transition().duration(1000)
+                        .attr("r", "25");
+
+                    circles
+                    .transition().duration(1000)
+                    .attr("cx", circlePosition);
+
+                    circles.exit()
+                    .transition().duration(1000)
+                    .attr("r", "0")
+                    .remove();
+
+            }
+
+    </script>
+</body>
