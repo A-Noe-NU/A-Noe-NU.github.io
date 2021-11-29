@@ -14,8 +14,8 @@ d3.select(window)
   });
 
   var bannerPosition = d3.scaleLinear()
-  .domain([0, window.innerHeight])
-  .range([0, 100]);
+  .domain([0, 10])
+  .range([0, 1]);
     
   d3.select(window)
   .on("scroll", function() {

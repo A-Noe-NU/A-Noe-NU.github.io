@@ -13,7 +13,49 @@
         stroke: #000;
         stroke-width: 1.2px;
       }
-      
+       /* Dropdown Button */
+ .dropbtn {
+    background-color: #69b3a2;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {background-color: #69b3a2;} 
+
+  
       </style>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <title>Africa SCA Data</title>
@@ -21,25 +63,18 @@
   </head>
   <body>
     <div id="banner">
-      <p><p1 style=font-size:40px>Africa</p>
-      <h1><h1 style=font-size:60px>Social Conflict Analysis Database</h1>
-      <p1 style=font-size:40px>1990-2017</p1>
+      <p><p1 style=font-size:30px>Africa</p>
+      <h1><h1 style=font-size:40px>Social Conflict Analysis Database</h1>
+      <p1 style=font-size:20px>1990-2017</p1>
       <br>
       <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <p1 style=font-size:18px> <p1 style=font-style:italic>The Social Conflict Analysis (SCA) Database is maintained by the Robert Strauss Center for International Security 
+      <p1 style=font-size:12px> <p1 style=font-style:italic>The Social Conflict Analysis (SCA) Database is maintained by the Robert Strauss Center for International Security 
         <br>and Law at the University of Texas. It includes protests, riots, strikes, inter-communal conflict, government violence 
         <br>against civilians, and other forms of social conflict not systematically tracked in other conflict datasets from 1990-2017.</p> 
         <br>
         <br>
         <br>
-        <p1 style=font-size:18px> <p1 style=font-weight:bold>Explore the data below.</p> 
+        <p1 style=font-size:20px> <p1 style=font-weight:bold>Explore the data below.</p> 
       </div>
 
       <div>
@@ -48,7 +83,15 @@
       <br>
       <br>
       <br>
-      <p><p1 style=font-size:24px> <p1 style=font-style:italic>Select a country to view data.</p>
+      <p><p1 style=font-size:24px> <p1 style=font-style:italic></p>
+        <div class="dropdown">
+          <button class="dropbtn">Select a country</button>
+          <div class="dropdown-content">
+            <a href="Data by Country">Algeria</a>
+            <a href="#">Country 2</a>
+            <a href="#">Country 3</a>
+          </div>
+        </div> 
       <div id="scatterplot">
     
 
@@ -74,9 +117,9 @@
       <script>
 
               // set the dimensions and margins of the graph
-              var margin = {top: 10, right: 30, bottom: 30, left: 60},
-            width = 460 - margin.left - margin.right,
-            height = 400 - margin.top - margin.bottom;
+              var margin = {top: 50, right: 50, bottom: 50, left: 50},
+            width = window.innerWidth - margin.left - margin.right -100,
+            height = window.innerHeight - margin.top - margin.bottom - 100;
       
               // append the svg object to the body of the page
         var svg = d3.select("#scatterplot")
@@ -95,6 +138,19 @@
         else {
             console.log("Africa SCA Data");
         }
+
+        d3.csv("africa_pop_data.csv", function(error, pop_data){
+        if (error) {
+          console.log(error);
+        }
+        else {
+          console.log("Africa population data", pop_data);
+        }
+
+         pop_data.forEach(function(pop_data) {
+            pop_data.Population_UN = parseFloat(pop_data.Population_UN);
+                    });
+      })
 
         data.forEach(function(d) {
             d.ndeath = parseFloat(d.ndeath);
@@ -115,18 +171,17 @@
                 Country_Name: d.key,
                 Sum_of_nDeath: d.value.ndeathSum,
                 count: d.value.cnt,
-                values: d.value.values
-                };
-
-                
-              }
-              
-              
-              );
+                values: d.value.values,
+                population: function(pop_data) {
+          return pop_data.Population_UN
+                }};
+              });
 
                 console.log("Data by Country", data_by_country);
                 ;
-              
+
+            var pop_data = d3.csv("Africa population data", pop_data);
+
           // Add X axis
           var x = d3.scaleLinear()
             .domain([0, 2600])
@@ -144,19 +199,26 @@
 
           // Add dots
           svg.append('g')
-            .selectAll("dot")
-            .data(data)
+            .selectAll("circle")
+            .data(data_by_country)
             .enter()
             .append("circle")
-              .attr("cx", function (d) { return d.value.cnt})
-              .attr("cy", function (d) { return d.value.ndeathSum } )
-              .attr("r", 1.5)
-              .style("fill", "#69b3a2")
-
-
-              
+              .attr("cx", function (d, i) { return x(d.count)})
+              .attr("cy", function (d, i) { return y(d.Sum_of_nDeath) } )
+              .attr("r", "5.5")
+// failed attempt to map r to pop_data -----> .attr("r", function (pop_data, i) { return r(pop_data.Population_UN)/10000000})
+              .style("stroke", "#69b3a2")
+              .style("fill", "white")
+              .style("fill-opacity", "0%")      
       
-      });
+      })
+      
+
+
+
+      
+      
+      ;
         ;
 
 
