@@ -9,58 +9,37 @@
     padding: 1vh 20px;
   }
 
-  body {
+  .body {
     text-align: center;
     margin: 0;
   }
 
-  .section {
+  .section div {
     display: flex;
-    align-items: center;
+    align-items: left;
+    font-family: "Garamond";
     padding: 50px;
+    flex: 1;
   }
   
   .section p {
+    display: flex;
+    padding: 50px;
     flex: 1;
+    font-family: "Garamond";
   }
   
-  .section svg {
-    border: 1px solid black;
-    flex: 1;
-    height: 600px;
-    width: 600px;
-    margin: 20px;
-  }
-
-  .row {
+  .section {
     display: flex;
     flex: 1;
-    border: 1px solid black;
-    align-items: center;
-    height: 300px;
-    width: 100%;
+    font-family: "Garamond";
     margin: 20px;
   }
 
-.row .section {
-  flex: 2;
-  border: 1px solid black;
-  align-items: center;
-  height: 160px;
-  width: 1200px;
-  margin: 20px;
-}
 
 
-  @media (max-width: 800px) {
-    .section {
-      flex-direction: row;
-    }
-    .section svg {
-      flex: none;
-      width: 100%;
-    }
-  }
+
+
 
   #tooltip {
       background: white;
@@ -69,4 +48,5 @@
     display: none;
     padding: 5px;
     position: absolute;
+    font-family: "Garamond";
   }
