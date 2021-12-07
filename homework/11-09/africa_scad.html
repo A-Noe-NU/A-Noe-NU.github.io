@@ -6,6 +6,7 @@
 
       text {
         font: 10px sans-serif;
+        background-color: white;
 
       }
 
@@ -48,14 +49,13 @@
         <p><p1 style=font-size:20px>  Comparing the number of conflict events with the number of deaths shows some interesting outliers, highlighting countries that have either had more peaceful-than-average events or more deadly-than-average events.<br><br><b>Nigeria</b> has had far and away the most events and deaths, as the most populous country in Africa. <br><br><b>Egypt</b> has had one of the highest number of events, but a mucher lower-than-expected number of deaths. This is likely at least partly related to the country's experience in the Arab Spring and the 2011 revolution, within which a large number of events were non-deadly incidents such as protests and strikes. <br><br>In contrast, countries like the <b>Democratic Republic of the Congo</b> and <b>Kenya</b> have had a moderate number of events, but those events were much deadlier than events in many other countries. <B>Ghana</B> and <b>Sudan</b> have had comparatively fewer events, but those events have been very deadly.</p>
         <svg id="scatterplot"></svg>
       </div>
-      <p><p1 style=font-size:16px> <p1 style=font-style:italic> <p1 style=color:#Bdba85><p1 style=background-color:white>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Countries where events are most likely to escalate in scale or violence—only the ten countries with the top likelihoods are shown</p>
-      <div class="section" id="section2">
-        <svg id="bars"></svg>
-        <p><p1 style=font-size:20px>The data also includes a field for each event to record whether the incident escalated in scale or violence. For example, an event may have initially begun as a protest but later escalated into a riot, or it began as a workers' strike and later escalated into violent governmental repression.<br><br>The ten countries with the highest likelihood of an event escalating are shown to the left. Surprisingly, this list is led by <b>Togo</b>—hardly famous as an epicenter of instability in Africa—where a socially disruptive event has an almost 1 in 4 chance of escalating in scale or violence. <br><br>Another interesting country on the list is <b>Egypt</b>, which has a comaparatively lower deaths-per-event ratio (as shown above), but has a comparatively higher chance of an event escalating in scale or violence. <br><br>In general, countries with higher likelihoods of events escalating in scale or violence are less populous countries, with some notable exceptions like <b>Ethiopia</b> and <b>South Africa</b>. </p>
+      <p><p1 style=font-size:16px> <p1 style=font-style:italic> <p1 style=color:#Bdba85><p1 style=background-color:white>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Countries where events are most or least likely to escalate in scale or violence—only the ten countries with the highest or lowest likelihoods are shown</p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="update(data1)">Top 10 countries</button>
+        <button onclick="update(data2)">Bottom 10 countries</button>
+        <div class="section" id="section2">
+        <svg id="bars" width="800" height="800" background-color="white"></svg>
+        <p><p1 style=font-size:20px>The data also includes a field for each event to record whether the incident escalated in scale or violence. For example, an event may have initially begun as a protest but later escalated into a riot, or it began as a workers' strike and later escalated into violent governmental repression.<br><br>The ten countries with the highest likelihood of an event escalating are shown to the left. Surprisingly, this list is led by <b>Togo</b>—hardly famous as an epicenter of instability in Africa—where a socially disruptive event has an almost 1 in 4 chance of escalating in scale or violence. <br><br>Another interesting country on the list is <b>Egypt</b>, which has a comaparatively lower deaths-per-event ratio (as shown above), but has a comparatively higher chance of an event escalating in scale or violence. In general, countries with higher likelihoods of events escalating in scale or violence are less populous countries, with some notable exceptions like <b>Ethiopia</b> and <b>South Africa</b>.<br><br> The ten countries with the lowest likelihood of an event escalating can be viewed with the second button; this list is led by <b>Mauritius</b> and <b>Benin</b>, both of whom have zero events that escalated in scale or violencet.</p>
       </div>
-      <br>
-      <br>
-      <br>
       <p><p1 style=font-size:16px> <p1 style=font-style:italic> <p1 style=color:#Bdba85><p1 style=background-color:white>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Map—larger circles represent more events per 1,000 people; the centerpoint of each circle is the average latitude/longitude of the country's events</p>
         <div class="section" id="section3">
       <p><p1 style=font-size:20px>In fact, some smaller countries have had the highest rate of events per capita, as shown in the map on the right. At the top of the list for countries with the most events per capita are <b>Sierra Leone</b>, <b>Libya</b>, the <b>Central African Republic</b>, <b>Eswatini</b>, and <b>Somalia</b>. Libya, Somalia, and the Central African Republic are perhaps unsurprising to see on this list, given the well-publicized conflicts that have occurred in those countries, but Sierra Leone and Eswatini are unexpected. <br><br>Conversely, some very populous countries like <b>Ethiopia</b>, <b>Nigeria</b>, <b>Egypt</b>, and the <b>Democratic Republic of the Congo</b> have had comparatively fewer events when viewed in light of their overall population, which is made all the more interesting when viewed in light of the media coverage that accompanies instability in these countries. Nigeria and the DRC have both battled heavily-publicized insurgencies; in Nigeria's case, these conflicts have occurred simultaneously in multiple parts of the country. Despite this, the number of events in Nigeria are quite small when viewed in proportion to their population. <br><br>Another surprise was how few events <b>Angola</b> has experienced compared to other countries, despite the dataset covering two major periods of fighting in the Angolan Civil War (1992 to 1994 and 1998 to 2002), as well as the tail end of the initial period of fighting, which began in 1975 and continued through 1991.<br><br>Since the centerpoint of each country's circle is derived from the <i>average</i> latitude and longitude of that country's events, some interesting observations arise. For example, the Sahara Desert is made prominent by the push of circles away from it in countries that border the desert, as the bulk of those countries' populations live closer to the edge of those countries. Examples include <b>Niger</b>, <b>Sudan</b>, and <b>Libya</b>, the last of whose circle is actually pushed out over the Mediterranean Sea.</p>
@@ -124,10 +124,6 @@
         .on("mousemove", mousemove3)
         .on("mouseleave", mouseleave3);
 
-
-
-
-
         }
 
         var tooltip = d3.selectAll("#section3")
@@ -183,38 +179,69 @@
                     .attr("transform",
                           "translate(" + margin.left + "," + margin.top + ")");
 
-        var svg2 = d3.select("#bars")
-                    .attr("width", width + margin.left + margin.right)
-                    .attr("height", height + margin.top + margin.bottom)
-                    .append("g")
-                    .attr("transform",
-                          "translate(" + margin.left + "," + margin.top + ")");
+   //     var svg2 = d3.select("#bars")
+   //                 .attr("width", width + margin.left + margin.right)
+    //                .attr("height", height + margin.top + margin.bottom)
+    //                .append("g")
+    //                .attr("transform",
+    //                      "translate(" + margin.left + "," + margin.top + ")");
 
 
-        var xScale = d3.scaleBand().range([0, width]).padding(0.4),
-            yScale = d3.scaleLinear().range([height, 0]);
 
-        var g2 = svg2.append("g")
-            .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
-        d3.csv("escrate.csv", function(error, data) {
-        if (error) {
-            throw error;
-        }
+    //    var g2 = svg2.append("g")
+    //        .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
-        xScale.domain(data.map(function(d) { return d.country; }));
-        yScale.domain([0, d3.max(data, function(d) { return d.escrate; })]);
+    //    d3.csv("escrate.csv", function(error, data) {
+    //    if (error) {
+    //        throw error;
+    //    }
 
-        g2.append("g")
-         .attr("transform", "translate(0," + height + ")")
-         .call(d3.axisBottom(xScale));
+    //    xScale.domain(data.map(function(d) { return d.country; }));
+     //   yScale.domain([0, d3.max(data, function(d) { return d.escrate; })]);
 
-        g2.append("g")
-         .call(d3.axisLeft(yScale).tickFormat(function(d){
-             return (d*100) + "%";
-         }).ticks(5));
+   //     g2.append("g")
+   //      .attr("transform", "translate(0," + height + ")")
+   //      .call(d3.axisBottom(xScale));
 
-         var tooltip = d3.select("#section2")
+   //     g2.append("g")
+   //      .call(d3.axisLeft(yScale).tickFormat(function(d){
+   //          return (d*100) + "%";
+   //     }).ticks(5));
+
+
+
+        var data1 = [
+   {countryesc: "Togo", escrate: 24.71},
+   {countryesc: "Madagascar", escrate: 20.9},
+   {countryesc: "Egypt", escrate: 19.17},
+   {countryesc: "Ethiopia", escrate: 18.72},
+   {countryesc: "Gabon", escrate: 18.69},
+   {countryesc: "Tunisia", escrate: 17.33},
+    {countryesc: "Eswatini", escrate: 17.02},
+    {countryesc: "Zambia", escrate: 14.69},
+    {countryesc: "Guinea", escrate: 14.29},
+    {countryesc: "South Africa", escrate: 14.15}
+];
+
+var data2 = [
+   {countryesc: "Mali", escrate: 4.73},
+   {countryesc: "Rwanda", escrate: 4.39},
+   {countryesc: "Lesotho", escrate: 4.35},
+   {countryesc: "Burundi", escrate: 3.99},
+   {countryesc: "Angola", escrate: 3.47},
+   {countryesc: "Somalia", escrate: 2.79},
+   {countryesc: "South Sudan", escrate: 2.43},
+   {countryesc: "Ghana", escrate: 0.83},
+   {countryesc: "Benin", escrate: 0},
+   {countryesc: "Mauritius", escrate: 0}
+];
+
+var margin2 = {top: 10, right: 50, bottom: 22, left: 50},
+    width2 = 850 - margin2.left - margin2.right,
+    height2 = 600 - margin2.top - margin2.bottom;
+
+    var tooltip2 = d3.select("#section2")
                         .append('div')
                         .style("opacity", 1)
                         .style("border-width", "1px")
@@ -227,8 +254,9 @@
                         .style("font-size", "18px")
                         .style("position", "absolute")
 
-        var mouseover2 = function(d) {
-                tooltip
+
+                        var mouseover2 = function(d) {
+                tooltip2
                   .style("opacity", 1)
                 d3.select(this)
                   .style("stroke", "#Bdba85")
@@ -238,43 +266,124 @@
               }
 
         var mousemove2 = function(d) {
-          tooltip
-            .html("<b>" + d.country + "</b>: " + d.escrate*100 + "% chance of an event escalating.")
+          tooltip2
+            .html("<b>" + d.countryesc + "</b>: " + d.escrate + "% chance of an event escalating.")
             .style("top", d3.event.pageY + 10 + "px")
                   .style("left", d3.event.pageX + 10 +"px");
         }
         
         var mouseleave2 = function(d) {
-          tooltip
+          tooltip2
             .style("opacity", 0)
           d3.select(this)
             .style("stroke", "#Bdba85")
             .style("stroke-width", 4)
             .style("opacity", 1)
+  }
+
+var svg2 = d3.select("#bars")
+  .append("svg")
+    .attr("width", width2 + margin2.left + margin2.right)
+    .attr("height", height2 + margin2.top + margin2.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin2.left + "," + margin2.top + ")");
+
+// updates bars:
+function update(data) {
+
+  var xScale = d3.scaleBand().range([0, width2]).padding(0.4),
+            yScale = d3.scaleLinear().range([height2, 0]);
+            
+// X axis
+var x = d3.scaleBand()
+.domain(data.map(function(d) { return d.countryesc;}))
+  .range([0, width2 ])
+  .padding(0.2);
+svg2.append("g")
+.call(d3.axisBottom(x))
+  .attr("class", "x axis")
+  .attr("transform", "translate(0," + height2 + ")")
+
+  .transition()
+  .remove()
+
+  
+
+  
+// Add Y axis
+var y = d3.scaleLinear()
+  .domain([0, 26])
+  .range([ height2, 0]);
+svg2.append("g")
+  .attr("class", "myYaxis")
+  .call(d3.axisLeft(y));
+  
+var u = svg2.selectAll("rect")
+  .data(data)
+
+u
+.enter()
+  .append("rect")
+  .on("mouseover", mouseover2)
+  .on("mousemove", mousemove2)
+  .on("mouseleave", mouseleave2)
+  .merge(u)
+  .transition()
+  .duration(1000)
+    .attr("x", function(d) { return x(d.countryesc); })
+    .attr("y", function(d) { return y(d.escrate); })
+    .style("background-color", "white")
+    .attr("width", x.bandwidth())
+    .attr("height", function(d) { return height2 - y(d.escrate); })
+    .attr("fill", "#Bdba85")
+
+var xup2 = svg2.selectAll("g")
+.data(data)
+xup2
+.enter()
+.append("g")
+.merge(xup2)
+.transition()
+.duration(1)
+.call(d3.axisLeft(y))
+.call(d3.axisBottom(x));
+
         }
 
 
-        g2.selectAll(".bar")
-         .data(data)
-         .enter().append("rect")
-         .attr("class", "bar")
-         .attr("x", function(d) { return xScale(d.country); })
-         .attr("y", function(d) { return yScale(d.escrate); })
-         .attr("width", xScale.bandwidth())
-         .attr("fill", "#Bdba85")
-         .attr("height", function(d) { return height - yScale(d.escrate); })
-         .on("mouseover", mouseover2)
-            .on("mousemove", mousemove2)
-            .on("mouseleave", mouseleave2);
 
 
-            svg2.append('text')
-            .attr('x', (-height / 2) -160)
-            .attr('y', 40)
-            .attr('transform', 'rotate(-90)')
-            .text('Chance of event escalating')
 
-    })
+// Initialize the plot with the first dataset
+
+update(data2)
+update(data1)
+
+
+
+
+       // g2.selectAll(".bar")
+       //  .data(data)
+       //  .enter().append("rect")
+       //  .attr("class", "bar")
+       //  .attr("x", function(d) { return xScale(d.country); })
+       //  .attr("y", function(d) { return yScale(d.escrate); })
+       //  .attr("width", xScale.bandwidth())
+       //  .attr("fill", "#Bdba85")
+       //  .attr("height", function(d) { return height - yScale(d.escrate); })
+       //  .on("mouseover", mouseover2)
+       //     .on("mousemove", mousemove2)
+       //     .on("mouseleave", mouseleave2);
+
+
+       //     svg2.append('text')
+       //     .attr('x', (-height / 2) -160)
+       //     .attr('y', 40)
+        //    .attr('transform', 'rotate(-90)')
+        //    .text('Chance of event escalating')
+
+   // })
 
         d3.queue()
           .defer(d3.csv, "scad_data.csv")
