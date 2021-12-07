@@ -11,6 +11,9 @@
 
       </style>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
     <title>Africa SCA Data</title>
     <link rel="shortcut icon" type="image/jpg" href="https://raw.githubusercontent.com/A-Noe-NU/A-Noe-NU.github.io/main/favicon.ico"/>
     <link rel="stylesheet" href="./styles.css" />
@@ -43,27 +46,136 @@
       <p><p1 style=font-size:16px> <p1 style=font-style:italic> <p1 style=color:#Bdba85><p1 style=background-color:white>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Events and deaths by country—each circle represents a country, and the size of the circle is linked to its population</p>
       <div class="section" id="section1">
         <p><p1 style=font-size:20px>  Comparing the number of conflict events with the number of deaths shows some interesting outliers, highlighting countries that have either had more peaceful-than-average events or more deadly-than-average events.<br><br><b>Nigeria</b> has had far and away the most events and deaths, as the most populous country in Africa. <br><br><b>Egypt</b> has had one of the highest number of events, but a mucher lower-than-expected number of deaths. <br><br>In contrast, countries like <b>the DRC</b> and <b>Kenya</b> have had a moderate number of events, but those events were much deadlier than events in many other countries. <B>Ghana</B> and <b>Sudan</b> have had comparatively fewer events, but those events have been very deadly.</p>
-<svg id="scatterplot"></svg>
-    
-</div>
-<p><p1 style=font-size:16px> <p1 style=font-style:italic> <p1 style=color:#Bdba85><p1 style=background-color:white>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Countries where events are most likely to escalate in scale or violence—only the ten countries with the top likelihoods are shown</p>
-<div class="section" id="section2">
-  <svg id="bars"></svg>
-  <p><p1 style=font-size:20px>The data also includes a field for each event to record whether the incident escalated in scale or violence. For example, an event may have initially begun as a protest but later escalated into a riot, or it began as a workers' strike and later escalated into violent governmental repression.<br><br>The ten countries with the highest likelihood of an event escalating are shown to the left. Surprisingly, this list is led by <b>Togo</b>, where a socially disruptive event has an almost 1 in 4 chance of escalating in scale or violence. <br><br>Another interesting country on the list is <b>Egypt</b>, which has a comaparatively low deaths-per-event ratio (as shown above), but has a comparatively high chance of an event escalating in scale or violence. <br><br>In general, countries with higher likelihoods of events escalating in scale or violence are less populous countries, with some notable exceptions like <b>Ethiopia</b> and <b>South Africa</b>. </p>
-</div>
+        <svg id="scatterplot"></svg>
+      </div>
+      <p><p1 style=font-size:16px> <p1 style=font-style:italic> <p1 style=color:#Bdba85><p1 style=background-color:white>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Countries where events are most likely to escalate in scale or violence—only the ten countries with the top likelihoods are shown</p>
+      <div class="section" id="section2">
+        <svg id="bars"></svg>
+        <p><p1 style=font-size:20px>The data also includes a field for each event to record whether the incident escalated in scale or violence. For example, an event may have initially begun as a protest but later escalated into a riot, or it began as a workers' strike and later escalated into violent governmental repression.<br><br>The ten countries with the highest likelihood of an event escalating are shown to the left. Surprisingly, this list is led by <b>Togo</b>, where a socially disruptive event has an almost 1 in 4 chance of escalating in scale or violence. <br><br>Another interesting country on the list is <b>Egypt</b>, which has a comaparatively low deaths-per-event ratio (as shown above), but has a comparatively high chance of an event escalating in scale or violence. <br><br>In general, countries with higher likelihoods of events escalating in scale or violence are less populous countries, with some notable exceptions like <b>Ethiopia</b> and <b>South Africa</b>. </p>
+      </div>
+      <br>
+      <br>
+      <br>
+      <p><p1 style=font-size:16px> <p1 style=font-style:italic> <p1 style=color:#Bdba85><p1 style=background-color:white>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Map—larger circles represent more events per 1,000 people. Centerpoint of each circle is the average latitude/longitude of the country's events.</p>
+        <div class="section" id="section3">
+      <p><p1 style=font-size:20px>In fact, some smaller countries have had the highest rate of events per capita, as shown in the map on the right. At the top of the list for countries with the most events per capita are <b>Sierra Leone</b>, <b>Libya</b>, the <b>Central African Republic</b>, and <b>Eswatini</b>. <br><br>Conversely, some very populous countries like <b>Ethiopia</b> and <b>Nigeria</b> have had fairly low numbers of events when viewed in light of their overall population.</p>
+      <svg id="map" width="1000" height="900"></svg>
+      </div>
 
 
 
       <script src="./banner.js"></script>
 
       <script>
+  // The svg
+  var svg3 = d3.select("#map"),
+      width2 = +svg3.attr("width"),
+      height2 = +svg3.attr("height");
+  
+  // Map and projection
+  var projection = d3.geoMercator()
+      .center([14,4])            
+      .scale(600)                
+      .translate([ width2/2, height2/2 ])
+  
+      var g3 = svg3.append("g")
+            .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
-              // set the dimensions and margins of the graph
-              var margin = {top: 50, right: 150, bottom: 150, left: 50},
-            width = window.innerWidth - margin.left - margin.right - 0.3*window.innerWidth,
-            height = window.innerHeight - margin.top - margin.bottom - 100;
+  d3.queue()
+    .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
+    .defer(d3.csv, "mapdata.csv")
+    .await(ready);
+  
+  function ready(error, dataGeo, mapdata) {
+  
+    // scale for bubble size
+    var valueExtent = d3.extent(mapdata, function(d) { return +d.n; })
+    var size = d3.scaleSqrt()
+      .domain(valueExtent)
+      .range([ 1, 50]) 
+  
+    // map
+    svg3.append("g")
+        .selectAll("path")
+        .data(dataGeo.features)
+        .enter()
+        .append("path")
+          .attr("fill", "#b8b8b8")
+          .attr("d", d3.geoPath()
+              .projection(projection)
+          )
+        .style("stroke", "white")
+        .style("opacity", .4)
+  
+        
+    // circles on map
+    svg3
+      .selectAll(".circle")
+      .data(mapdata.sort(function(a,b) { return +b.n - +a.n }).filter(function(d,i){ return i<1000 }))
+      .enter()
+      .append("circle")
+        .attr("cx", function(d){ return projection([+d.lon, +d.lat])[0] })
+        .attr("cy", function(d){ return projection([+d.lon, +d.lat])[1] })
+        .attr("r", function(d){ return size(+d.n) })
+        .style("fill", "#Bdba85")
+        .attr("stroke-width", 1)
+        .attr("fill-opacity", .7)
+        .on("mouseover", mouseover3)
+        .on("mousemove", mousemove3)
+        .on("mouseleave", mouseleave3);
+
+
+
+
+
+        }
+
+        var tooltip = d3.selectAll("#section3")
+                  .append('div')
+                  .style("opacity", 0.5)
+                  .style("border-width", "1px")
+                  .style("color", "#Bdba85")
+                  .attr("class", "tooltip")
+                  .style("background-color", "white")
+                  .style("border-width", "2px")
+                  .style("border-radius", "5px")
+                  .style("padding", "5px")
+                  .style("font-size", "18px")
+                  .style("position", "absolute");
+  
+
+                  var mouseover3 = function(d) {
+                tooltip
+                  .style("opacity", 1)
+                d3.select(this)
+                  .style("stroke", "#Bdba85")
+                  .style("stroke-width", 6)
+                  .style("top", d3.event.pageY + 10 + "px")
+                  .style("left", d3.event.pageX + 10 +"px");
+              }
+
+        var mousemove3 = function(d) {
+          tooltip
+            .html("<b>" + d.country + "</b>: " + d.n + " events per 1,000 people.")
+            .style("top", d3.event.pageY + 10 + "px")
+                  .style("left", d3.event.pageX + 10 +"px");
+        }
+        
+        var mouseleave3 = function(d) {
+          tooltip
+            .style("opacity", 0)
+          d3.select(this)
+            .style("stroke", "#Bdba85")
+            .style("stroke-width", 0)
+            .style("opacity", 1)
+  }
+
+              // dimensions and margins of the scatterplot
+        var margin = {top: 50, right: 150, bottom: 150, left: 50},
+        width = window.innerWidth - margin.left - margin.right - 0.3*window.innerWidth,
+        height = window.innerHeight - margin.top - margin.bottom - 100;
       
-              // append the svg object to the body of the page
+              // append the svgs to the body of the page
         var svg1 = d3.select("#scatterplot")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
@@ -71,21 +183,21 @@
                     .attr("transform",
                           "translate(" + margin.left + "," + margin.top + ")");
 
-                          var svg2 = d3.select("#bars")
-                          .attr("width", width + margin.left + margin.right)
+        var svg2 = d3.select("#bars")
+                    .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
                     .append("g")
                     .attr("transform",
                           "translate(" + margin.left + "," + margin.top + ")");
 
 
-var xScale = d3.scaleBand().range([0, width]).padding(0.4),
+        var xScale = d3.scaleBand().range([0, width]).padding(0.4),
             yScale = d3.scaleLinear().range([height, 0]);
 
-var g2 = svg2.append("g")
+        var g2 = svg2.append("g")
             .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
-    d3.csv("escrate.csv", function(error, data) {
+        d3.csv("escrate.csv", function(error, data) {
         if (error) {
             throw error;
         }
@@ -168,11 +280,15 @@ var g2 = svg2.append("g")
           .defer(d3.csv, "scad_data.csv")
           .defer(d3.csv, "africa_pop_data.csv")
           .defer(d3.csv, "escrate.csv")
+          .defer(d3.csv, "mapdata.csv")
+          .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
           .awaitAll(function(error, responses) {
             
             var data = responses[0];
             var pop_data = responses[1];
             var escrate_data = responses[2];
+            var mapdata = responses[3];
+            var dataGeo = responses[4]
 
         if (error) {
             console.log(error);
@@ -309,13 +425,7 @@ var g2 = svg2.append("g")
             .attr('x', width / 2)
             .attr('y', height + 40)
             .attr('text-anchor', 'middle')
-            .text('Events')
-            
-            
-    
-    
-    
-    ;
+            .text('Events');
 
 
             // var chartHeight = height - margin.top - margin.bottom;
@@ -361,16 +471,7 @@ var g2 = svg2.append("g")
 
 
 
-        }
-
-        
-            )
-            
-            
-            
-
-            
-            ;;
+        });;
 
       </script>
     </body>
