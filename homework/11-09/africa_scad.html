@@ -54,7 +54,7 @@
         <button onclick="update(data2)">Bottom 10 countries</button>
         <div class="section" id="section2">
         <svg id="bars" width="800" height="800" background-color="white"></svg>
-        <p><p1 style=font-size:20px>The data also includes a field for each event to record whether the incident escalated in scale or violence. For example, an event may have initially begun as a protest but later escalated into a riot, or it began as a workers' strike and later escalated into violent governmental repression.<br><br>The ten countries with the highest likelihood of an event escalating are shown to the left. Surprisingly, this list is led by <b>Togo</b>—hardly famous as an epicenter of instability in Africa—where a socially disruptive event has an almost 1 in 4 chance of escalating in scale or violence. <br><br>Another interesting country on the list is <b>Egypt</b>, which has a comaparatively lower deaths-per-event ratio (as shown above), but has a comparatively higher chance of an event escalating in scale or violence. In general, countries with higher likelihoods of events escalating in scale or violence are less populous countries, with some notable exceptions like <b>Ethiopia</b> and <b>South Africa</b>.<br><br> The ten countries with the lowest likelihood of an event escalating can be viewed with the second button; this list is led by <b>Mauritius</b> and <b>Benin</b>, both of whom have zero events that escalated in scale or violencet.</p>
+        <p><p1 style=font-size:20px>The data also includes a field for each event to record whether the incident escalated in scale or violence. For example, an event may have initially begun as a protest but later escalated into a riot, or it began as a workers' strike and later escalated into violent governmental repression.<br><br>The ten countries with the highest likelihood of an event escalating are shown to the left. Surprisingly, this list is led by <b>Togo</b>—hardly famous as an epicenter of instability in Africa—where a socially disruptive event has an almost 1 in 4 chance of escalating in scale or violence. <br><br>Another interesting country on the list is <b>Egypt</b>, which has a comaparatively lower deaths-per-event ratio (as shown above), but has a comparatively higher chance of an event escalating in scale or violence. In general, countries with higher likelihoods of events escalating in scale or violence are less populous countries, with some notable exceptions like <b>Ethiopia</b> and <b>South Africa</b>.<br><br> The ten countries with the lowest likelihood of an event escalating can be viewed with the second button; this list is led by <b>Mauritius</b> and <b>Benin</b>, both of whom have zero events that escalated in scale or violence.</p>
       </div>
       <p><p1 style=font-size:16px> <p1 style=font-style:italic> <p1 style=color:#Bdba85><p1 style=background-color:white>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Map—larger circles represent more events per 1,000 people; the centerpoint of each circle is the average latitude/longitude of the country's events</p>
         <div class="section" id="section3">
@@ -309,7 +309,9 @@ var svg2 = d3.select("#bars")
     .attr("height", height2 + margin2.top + margin2.bottom)
   .append("g")
     .attr("transform",
-          "translate(" + margin2.left + "," + margin2.top + ")");
+          "translate(" + margin2.left + "," + margin2.top + ")")
+          
+;
 
 // updates bars:
 function update(data) {
@@ -369,7 +371,12 @@ xup2
 .transition()
 .duration(1)
 .call(d3.axisLeft(y))
-.call(d3.axisBottom(x));
+.call(d3.axisBottom(x))
+svg2.append('text')
+            .attr('x', (-height / 2))
+            .attr('y', -33)
+            .attr('transform', 'rotate(-90)')
+            .text('Percent chance of an event escalating');
 
         }
 
