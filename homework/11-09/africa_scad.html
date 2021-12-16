@@ -130,14 +130,16 @@
                   .append('div')
                   .style("opacity", 0.5)
                   .style("border-width", "1px")
-                  .style("color", "#Bdba85")
+                  .style("color", "#9d9a6c")
                   .attr("class", "tooltip")
                   .style("background-color", "white")
                   .style("border-width", "2px")
                   .style("border-radius", "5px")
                   .style("padding", "5px")
                   .style("font-size", "18px")
-                  .style("position", "absolute");
+                  .style("position", "absolute")
+                  .style("border-width", "1px")
+            .style("border-color", "#9d9a6c");
   
 
                   var mouseover3 = function(d) {
@@ -147,14 +149,20 @@
                   .style("stroke", "#Bdba85")
                   .style("stroke-width", 6)
                   .style("top", d3.event.pageY + 10 + "px")
-                  .style("left", d3.event.pageX + 10 +"px");
+                  .style("left", d3.event.pageX + 10 +"px")
+                  .style("border-width", "1px")
+            .style("border-style", "solid")
+            .style("border-color", "#9d9a6c");
               }
 
         var mousemove3 = function(d) {
           tooltip
             .html("<b>" + d.country + "</b>: " + d.n + " events per 1,000 people.")
             .style("top", d3.event.pageY + 10 + "px")
-                  .style("left", d3.event.pageX + 10 +"px");
+                  .style("left", d3.event.pageX + 10 +"px")
+                  .style("border-width", "1px")
+            .style("border-style", "solid")
+            .style("border-color", "#9d9a6c");
         }
         
         var mouseleave3 = function(d) {
@@ -164,6 +172,9 @@
             .style("stroke", "#Bdba85")
             .style("stroke-width", 0)
             .style("opacity", 1)
+            .style("border-width", "1px")
+            .style("border-style", "solid")
+            .style("border-color", "#9d9a6c")
   }
 
               // dimensions and margins of the scatterplot
@@ -245,7 +256,7 @@ var margin2 = {top: 10, right: 50, bottom: 22, left: 50},
                         .append('div')
                         .style("opacity", 1)
                         .style("border-width", "1px")
-                        .style("color", "#Bdba85")
+                        .style("color", "#9d9a6c")
                         .attr("class", "tooltip")
                         .style("background-color", "white")
                         .style("border-width", "2px")
@@ -253,6 +264,8 @@ var margin2 = {top: 10, right: 50, bottom: 22, left: 50},
                         .style("padding", "5px")
                         .style("font-size", "18px")
                         .style("position", "absolute")
+                        .style("border-width", "1px")
+            .style("border-color", "#9d9a6c")
 
 
                         var mouseover2 = function(d) {
@@ -262,14 +275,20 @@ var margin2 = {top: 10, right: 50, bottom: 22, left: 50},
                   .style("stroke", "#Bdba85")
                   .style("stroke-width", 6)
                   .style("top", d3.event.pageY + 10 + "px")
-                  .style("left", d3.event.pageX + 10 +"px");
+                  .style("left", d3.event.pageX + 10 +"px")
+                  .style("border-width", "1px")
+            .style("border-style", "solid")
+            .style("border-color", "#9d9a6c");
               }
 
         var mousemove2 = function(d) {
           tooltip2
             .html("<b>" + d.countryesc + "</b>: " + d.escrate + "% chance of an event escalating.")
             .style("top", d3.event.pageY + 10 + "px")
-                  .style("left", d3.event.pageX + 10 +"px");
+                  .style("left", d3.event.pageX + 10 +"px")
+                  .style("border-width", "1px")
+            .style("border-style", "solid")
+            .style("border-color", "#9d9a6c");
         }
         
         var mouseleave2 = function(d) {
@@ -279,6 +298,9 @@ var margin2 = {top: 10, right: 50, bottom: 22, left: 50},
             .style("stroke", "#Bdba85")
             .style("stroke-width", 4)
             .style("opacity", 1)
+            .style("border-width", "1px")
+            .style("border-style", "solid")
+            .style("border-color", "#9d9a6c")
   }
 
 var svg2 = d3.select("#bars")
@@ -334,7 +356,7 @@ u
     .attr("x", function(d) { return x(d.countryesc); })
     .attr("y", function(d) { return y(d.escrate); })
     .style("background-color", "white")
-    .attr("width", x.bandwidth())
+    .attr("width", x.bandwidth()/1.5)
     .attr("height", function(d) { return height2 - y(d.escrate); })
     .attr("fill", "#Bdba85")
 
@@ -418,7 +440,7 @@ update(data1)
                         .append('div')
                         .style("opacity", 1)
                         .style("border-width", "1px")
-                        .style("color", "#Bdba85")
+                        .style("color", "#9d9a6c")
                         .attr("class", "tooltip")
                         .style("background-color", "white")
                         .style("border-width", "2px")
@@ -426,6 +448,8 @@ update(data1)
                         .style("padding", "5px")
                         .style("font-size", "18px")
                         .style("position", "absolute")
+                        .style("border-width", "1px")
+            .style("border-color", "#9d9a6c")
 
         var mouseover = function(d) {
                 tooltip
@@ -434,14 +458,20 @@ update(data1)
                   .style("stroke", "#Bdba85")
                   .style("stroke-width", 6)
                   .style("top", d3.event.pageY + 10 + "px")
-                  .style("left", d3.event.pageX + 10 +"px");
+                  .style("left", d3.event.pageX + 10 +"px")
+                  .style("border-width", "1px")
+            .style("border-style", "solid")
+            .style("border-color", "#9d9a6c");
               }
 
         var mousemove = function(d) {
           tooltip
             .html("<b>" + d.Country_Name + "</b>: " + d.Sum_of_nDeath + " deaths in " + d.count + " events between 1990 and 2017.")
             .style("top", d3.event.pageY + 10 + "px")
-                  .style("left", d3.event.pageX + 10 +"px");
+                  .style("left", d3.event.pageX + 10 +"px")
+                  .style("border-width", "1px")
+            .style("border-style", "solid")
+            .style("border-color", "#9d9a6c");
         }
         
         var mouseleave = function(d) {
@@ -451,6 +481,9 @@ update(data1)
             .style("stroke", "#Bdba85")
             .style("stroke-width", 4)
             .style("opacity", 1)
+            .style("border-width", "1px")
+            .style("border-style", "solid")
+            .style("border-color", "#9d9a6c")
         }
 
         var data_by_country = d3.nest()
