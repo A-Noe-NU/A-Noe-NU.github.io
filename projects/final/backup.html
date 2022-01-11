@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+
+      text {
+        font: 10px sans-serif;
+
+      }
+
+      </style>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+    <title>Africa SCA Data</title>
+    <link rel="shortcut icon" type="image/jpg" href="https://raw.githubusercontent.com/A-Noe-NU/A-Noe-NU.github.io/main/favicon.ico"/>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="banner">
+
+      <h1><h1 style=font-size:40px>Africa: Social Conflict Analysis Database</h1>
+      <p1 style=font-size:20px>1990-2017</p1>
+      <br>
+      <br>
+      <br>
+      <p1 style=font-size:20px> The Social Conflict Analysis (SCA) Database is maintained by the Robert Strauss Center 
+        <br>for International Security and Law at the University of Texas. It includes protests, riots, 
+        <br>strikes, inter-communal conflict, government violence against civilians, and other forms
+        <br>of social conflict not systematically tracked in other conflict datasets from 1990-2017.
+      <br>The dataset as a whole contains over 17,000 records.</p> 
+        <br>
+        <br>
+
+        <p1 style=font-size:20px> <p1 style=font-weight:bold>Explore the data below.</p> 
+      </div>
+
+      <div>
+
+      </div>
+      <br>
+      <br>
+      <br>
+      <p><p1 style=font-size:16px> <p1 style=font-style:italic> <p1 style=color:#Bdba85><p1 style=background-color:white>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Events and deaths by country—each circle represents a country, and the size of the circle is linked to its population</p>
+      <div class="section" id="section1">
+        <p><p1 style=font-size:20px>  Comparing the number of conflict events with the number of deaths shows some interesting outliers, highlighting countries that have either had more peaceful-than-average events or more deadly-than-average events.<br><br><b>Nigeria</b> has had far and away the most events and deaths, as the most populous country in Africa. <br><br><b>Egypt</b> has had one of the highest number of events, but a mucher lower-than-expected number of deaths. This is likely at least partly related to the country's experience in the Arab Spring and the 2011 revolution, within which a large number of events were non-deadly incidents such as protests and strikes. <br><br>In contrast, countries like the <b>Democratic Republic of the Congo</b> and <b>Kenya</b> have had a moderate number of events, but those events were much deadlier than events in many other countries. <B>Ghana</B> and <b>Sudan</b> have had comparatively fewer events, but those events have been very deadly.</p>
+        <svg id="scatterplot"></svg>
+      </div>
+      <p><p1 style=font-size:16px> <p1 style=font-style:italic> <p1 style=color:#Bdba85><p1 style=background-color:white>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Countries where events are most likely to escalate in scale or violence—only the ten countries with the top likelihoods are shown</p>
+      <div class="section" id="section2">
+        <svg id="bars"></svg>
+        <p><p1 style=font-size:20px>The data also includes a field for each event to record whether the incident escalated in scale or violence. For example, an event may have initially begun as a protest but later escalated into a riot, or it began as a workers' strike and later escalated into violent governmental repression.<br><br>The ten countries with the highest likelihood of an event escalating are shown to the left. Surprisingly, this list is led by <b>Togo</b>—hardly famous as an epicenter of instability in Africa—where a socially disruptive event has an almost 1 in 4 chance of escalating in scale or violence. <br><br>Another interesting country on the list is <b>Egypt</b>, which has a comaparatively lower deaths-per-event ratio (as shown above), but has a comparatively higher chance of an event escalating in scale or violence. <br><br>In general, countries with higher likelihoods of events escalating in scale or violence are less populous countries, with some notable exceptions like <b>Ethiopia</b> and <b>South Africa</b>. </p>
+      </div>
+      <br>
+      <br>
+      <br>
+      <p><p1 style=font-size:16px> <p1 style=font-style:italic> <p1 style=color:#Bdba85><p1 style=background-color:white>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Map—larger circles represent more events per 1,000 people; the centerpoint of each circle is the average latitude/longitude of the country's events</p>
+        <div class="section" id="section3">
+      <p><p1 style=font-size:20px>In fact, some smaller countries have had the highest rate of events per capita, as shown in the map on the right. At the top of the list for countries with the most events per capita are <b>Sierra Leone</b>, <b>Libya</b>, the <b>Central African Republic</b>, <b>Eswatini</b>, and <b>Somalia</b>. Libya, Somalia, and the Central African Republic are perhaps unsurprising to see on this list, given the well-publicized conflicts that have occurred in those countries, but Sierra Leone and Eswatini are unexpected. <br><br>Conversely, some very populous countries like <b>Ethiopia</b>, <b>Nigeria</b>, <b>Egypt</b>, and the <b>Democratic Republic of the Congo</b> have had comparatively fewer events when viewed in light of their overall population, which is made all the more interesting when viewed in light of the media coverage that accompanies instability in these countries. Nigeria and the DRC have both battled heavily-publicized insurgencies; in Nigeria's case, these conflicts have occurred simultaneously in multiple parts of the country. Despite this, the number of events in Nigeria are quite small when viewed in proportion to their population. <br><br>Another surprise was how few events <b>Angola</b> has experienced compared to other countries, despite the dataset covering two major periods of fighting in the Angolan Civil War (1992 to 1994 and 1998 to 2002), as well as the tail end of the initial period of fighting, which began in 1975 and continued through 1991.<br><br>Since the centerpoint of each country's circle is derived from the <i>average</i> latitude and longitude of that country's events, some interesting observations arise. For example, the Sahara Desert is made prominent by the push of circles away from it in countries that border the desert, as the bulk of those countries' populations live closer to the edge of those countries. Examples include <b>Niger</b>, <b>Sudan</b>, and <b>Libya</b>, the last of whose circle is actually pushed out over the Mediterranean Sea.</p>
+      <svg id="map" width="1000" height="900"></svg>
+      </div>
+
+
+
+      <script src="./banner.js"></script>
+
+      <script>
+  // The svg
+  var svg3 = d3.select("#map"),
+      width2 = +svg3.attr("width"),
+      height2 = +svg3.attr("height");
+  
+  // Map and projection
+  var projection = d3.geoMercator()
+      .center([14,4])            
+      .scale(600)                
+      .translate([ width2/2, height2/2 ])
+  
+      var g3 = svg3.append("g")
+            .attr("transform", "translate(" + 100 + "," + 100 + ")");
+
+  d3.queue()
+    .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
+    .defer(d3.csv, "mapdata.csv")
+    .await(ready);
+  
+  function ready(error, dataGeo, mapdata) {
+  
+    // scale for bubble size
+    var valueExtent = d3.extent(mapdata, function(d) { return +d.n; })
+    var size = d3.scaleSqrt()
+      .domain(valueExtent)
+      .range([ 1, 50]) 
+  
+    // map
+    svg3.append("g")
+        .selectAll("path")
+        .data(dataGeo.features)
+        .enter()
+        .append("path")
+          .attr("fill", "#b8b8b8")
+          .attr("d", d3.geoPath()
+              .projection(projection)
+          )
+        .style("stroke", "white")
+        .style("opacity", .4)
+  
+        
+    // circles on map
+    svg3
+      .selectAll(".circle")
+      .data(mapdata.sort(function(a,b) { return +b.n - +a.n }).filter(function(d,i){ return i<1000 }))
+      .enter()
+      .append("circle")
+        .attr("cx", function(d){ return projection([+d.lon, +d.lat])[0] })
+        .attr("cy", function(d){ return projection([+d.lon, +d.lat])[1] })
+        .attr("r", function(d){ return size(+d.n) })
+        .style("fill", "#Bdba85")
+        .attr("stroke-width", 1)
+        .attr("fill-opacity", .7)
+        .on("mouseover", mouseover3)
+        .on("mousemove", mousemove3)
+        .on("mouseleave", mouseleave3);
+
+
+
+
+
+        }
+
+        var tooltip = d3.selectAll("#section3")
+                  .append('div')
+                  .style("opacity", 0.5)
+                  .style("border-width", "1px")
+                  .style("color", "#Bdba85")
+                  .attr("class", "tooltip")
+                  .style("background-color", "white")
+                  .style("border-width", "2px")
+                  .style("border-radius", "5px")
+                  .style("padding", "5px")
+                  .style("font-size", "18px")
+                  .style("position", "absolute");
+  
+
+                  var mouseover3 = function(d) {
+                tooltip
+                  .style("opacity", 1)
+                d3.select(this)
+                  .style("stroke", "#Bdba85")
+                  .style("stroke-width", 6)
+                  .style("top", d3.event.pageY + 10 + "px")
+                  .style("left", d3.event.pageX + 10 +"px");
+              }
+
+        var mousemove3 = function(d) {
+          tooltip
+            .html("<b>" + d.country + "</b>: " + d.n + " events per 1,000 people.")
+            .style("top", d3.event.pageY + 10 + "px")
+                  .style("left", d3.event.pageX + 10 +"px");
+        }
+        
+        var mouseleave3 = function(d) {
+          tooltip
+            .style("opacity", 0)
+          d3.select(this)
+            .style("stroke", "#Bdba85")
+            .style("stroke-width", 0)
+            .style("opacity", 1)
+  }
+
+              // dimensions and margins of the scatterplot
+        var margin = {top: 50, right: 150, bottom: 150, left: 50},
+        width = window.innerWidth - margin.left - margin.right - 0.3*window.innerWidth,
+        height = window.innerHeight - margin.top - margin.bottom - 100;
+      
+              // append the svgs to the body of the page
+        var svg1 = d3.select("#scatterplot")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform",
+                          "translate(" + margin.left + "," + margin.top + ")");
+
+        var svg2 = d3.select("#bars")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform",
+                          "translate(" + margin.left + "," + margin.top + ")");
+
+
+        var xScale = d3.scaleBand().range([0, width]).padding(0.4),
+            yScale = d3.scaleLinear().range([height, 0]);
+
+        var g2 = svg2.append("g")
+            .attr("transform", "translate(" + 100 + "," + 100 + ")");
+
+        d3.csv("escrate.csv", function(error, data) {
+        if (error) {
+            throw error;
+        }
+
+        xScale.domain(data.map(function(d) { return d.country; }));
+        yScale.domain([0, d3.max(data, function(d) { return d.escrate; })]);
+
+        g2.append("g")
+         .attr("transform", "translate(0," + height + ")")
+         .call(d3.axisBottom(xScale));
+
+        g2.append("g")
+         .call(d3.axisLeft(yScale).tickFormat(function(d){
+             return (d*100) + "%";
+         }).ticks(5));
+
+         var tooltip = d3.select("#section2")
+                        .append('div')
+                        .style("opacity", 1)
+                        .style("border-width", "1px")
+                        .style("color", "#Bdba85")
+                        .attr("class", "tooltip")
+                        .style("background-color", "white")
+                        .style("border-width", "2px")
+                        .style("border-radius", "5px")
+                        .style("padding", "5px")
+                        .style("font-size", "18px")
+                        .style("position", "absolute")
+
+        var mouseover2 = function(d) {
+                tooltip
+                  .style("opacity", 1)
+                d3.select(this)
+                  .style("stroke", "#Bdba85")
+                  .style("stroke-width", 6)
+                  .style("top", d3.event.pageY + 10 + "px")
+                  .style("left", d3.event.pageX + 10 +"px");
+              }
+
+        var mousemove2 = function(d) {
+          tooltip
+            .html("<b>" + d.country + "</b>: " + d.escrate*100 + "% chance of an event escalating.")
+            .style("top", d3.event.pageY + 10 + "px")
+                  .style("left", d3.event.pageX + 10 +"px");
+        }
+        
+        var mouseleave2 = function(d) {
+          tooltip
+            .style("opacity", 0)
+          d3.select(this)
+            .style("stroke", "#Bdba85")
+            .style("stroke-width", 4)
+            .style("opacity", 1)
+        }
+
+
+        g2.selectAll(".bar")
+         .data(data)
+         .enter().append("rect")
+         .attr("class", "bar")
+         .attr("x", function(d) { return xScale(d.country); })
+         .attr("y", function(d) { return yScale(d.escrate); })
+         .attr("width", xScale.bandwidth())
+         .attr("fill", "#Bdba85")
+         .attr("height", function(d) { return height - yScale(d.escrate); })
+         .on("mouseover", mouseover2)
+            .on("mousemove", mousemove2)
+            .on("mouseleave", mouseleave2);
+
+
+            svg2.append('text')
+            .attr('x', (-height / 2) -160)
+            .attr('y', 40)
+            .attr('transform', 'rotate(-90)')
+            .text('Chance of event escalating')
+
+    })
+
+        d3.queue()
+          .defer(d3.csv, "scad_data.csv")
+          .defer(d3.csv, "africa_pop_data.csv")
+          .defer(d3.csv, "escrate.csv")
+          .defer(d3.csv, "mapdata.csv")
+          .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
+          .awaitAll(function(error, responses) {
+            
+            var data = responses[0];
+            var pop_data = responses[1];
+            var escrate_data = responses[2];
+            var mapdata = responses[3];
+            var dataGeo = responses[4]
+
+        if (error) {
+            console.log(error);
+        }
+        else {
+            console.log("Africa SCA Data");
+        }
+
+         pop_data.forEach(function(pop_data) {
+            pop_data.Population_UN = parseFloat(pop_data.Population_UN);
+          });
+
+        data.forEach(function(d) {
+            d.ndeath = parseFloat(d.ndeath);
+                    });
+
+        var tooltip = d3.select("#section1")
+                        .append('div')
+                        .style("opacity", 1)
+                        .style("border-width", "1px")
+                        .style("color", "#Bdba85")
+                        .attr("class", "tooltip")
+                        .style("background-color", "white")
+                        .style("border-width", "2px")
+                        .style("border-radius", "5px")
+                        .style("padding", "5px")
+                        .style("font-size", "18px")
+                        .style("position", "absolute")
+
+        var mouseover = function(d) {
+                tooltip
+                  .style("opacity", 1)
+                d3.select(this)
+                  .style("stroke", "#Bdba85")
+                  .style("stroke-width", 6)
+                  .style("top", d3.event.pageY + 10 + "px")
+                  .style("left", d3.event.pageX + 10 +"px");
+              }
+
+        var mousemove = function(d) {
+          tooltip
+            .html("<b>" + d.Country_Name + "</b>: " + d.Sum_of_nDeath + " deaths in " + d.count + " events between 1990 and 2017.")
+            .style("top", d3.event.pageY + 10 + "px")
+                  .style("left", d3.event.pageX + 10 +"px");
+        }
+        
+        var mouseleave = function(d) {
+          tooltip
+            .style("opacity", 0)
+          d3.select(this)
+            .style("stroke", "#Bdba85")
+            .style("stroke-width", 4)
+            .style("opacity", 1)
+        }
+
+        var data_by_country = d3.nest()
+            .key(function(d) {return d.countryname;})
+            .rollup(function(v) {
+              return {
+                cnt: v.length,
+                ndeathSum: d3.sum(v, function(d) {return d.ndeath; }),
+                escRate: d3.sum(v, function(d) {return d.escalation / v.length}),
+                values: v
+              };
+            })
+            .entries(data)
+            .map(function(d) {
+              return {
+                Country_Name: d.key,
+                Sum_of_nDeath: d.value.ndeathSum,
+                count: d.value.cnt,
+                values: d.value.values,
+                escRate: d.value.escRate
+               };
+              });
+
+                console.log("Data by Country", data_by_country);
+                ;
+
+          // add X axis
+        var x = d3.scaleLinear()
+          .domain([0, 2600])
+          .range([ 0, width]);
+          svg1.append("g")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3.axisBottom(x));
+
+          // add population scale for sizing
+        var popScale = d3.scaleLinear()
+          .domain([0, d3.max(pop_data, function(d) { return d.Population_UN; })])
+          .range([0, 50]);
+
+          
+          // add Y axis
+        var y = d3.scaleLinear()
+          .domain([0, 50000])
+          .range([ height, 0]);
+          svg1.append("g")
+          .call(d3.axisLeft(y));
+
+          // add circles
+          svg1.selectAll("circle")
+            .data(data_by_country)
+            .enter()
+            .append("circle")
+            .attr("cx", function (d, i) { return x(d.count)})
+            .attr("cy", function (d, i) { return y(d.Sum_of_nDeath)})
+            .attr("r", function(d) {
+              var pop = pop_data.filter(p => p.Country === d.Country_Name);
+              if (pop.length) {
+                return popScale(pop[0].Population_UN); 
+              }
+              else {
+                console.log("Missing Population", d.Country_Name);
+                return popScale(0);
+              }
+            })
+            .style("stroke", "#Bdba85")
+            .style("stroke-width", 4)
+            .style("stroke-opacity", "70%")
+            .style("fill", "white")
+            .style("fill-opacity", "0%")      
+            .on("mouseover", mouseover)
+            .on("mousemove", mousemove)
+            .on("mouseleave", mouseleave)
+
+            svg1.append('text')
+            .attr('x', (-height / 2) + 45)
+            .attr('y', -43)
+            .attr('transform', 'rotate(-90)')
+            .text('Deaths')
+
+            svg1.append('text')
+            .attr('x', width / 2)
+            .attr('y', height + 40)
+            .attr('text-anchor', 'middle')
+            .text('Events');
+
+
+            // var chartHeight = height - margin.top - margin.bottom;
+            
+            // var svg2 = d3.select("#bars")
+                    //.attr("width", width + margin.left + margin.right)
+                    //.attr("height", height + margin.top + margin.bottom)
+                    
+
+            //var barHeight = d3.scaleLinear()
+            //.domain([0, 30])
+            //.range([0, chartHeight]);
+            //svg2.append("g")
+            //.call(d3.axisLeft(barHeight));
+
+            //var barX = d3.scaleBand()
+            //.domain(data_by_country.map(function(d) {return d.Country_Name;}))
+            //.padding(0.2)
+            //.range([0, width]);
+            //svg2.append("g")
+            //.attr("transform", "translate(0," + height + ")")
+            //.call(d3.axisBottom(barX))
+            //.append("rect")
+            //.attr("transform",
+                  //"translate(" + margin.left + "," + margin.top + ")");
+
+            //var bars = svg2.selectAll(".bar")
+            //.data(data_by_country)
+            //.enter()
+            //.append("rect")
+            //.attr("class", "bar")
+            //.attr("fill", "#Bdba85")
+            //.attr("width", 200)
+            //.attr("height", function(d) {
+                //return barHeight(d.escRate);
+             // })
+            //.attr("x", function(d) {
+              //return barX(d.Country_Name)
+            //.attr("y", function(d) {
+              //return y(100*d.escRate)
+            //})
+            //});
+
+
+
+        });;
+
+      </script>
+    </body>
+  </body>
+</html>

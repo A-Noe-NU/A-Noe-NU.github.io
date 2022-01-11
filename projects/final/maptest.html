@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js and the geo projection plugin -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+
+<!-- Create an element where the map will take place -->
+<svg id="map" width="1200" height="900"></svg>
+
+<script>
+
+  // The svg
+  var svg3 = d3.select("svg"),
+      width = +svg3.attr("width"),
+      height = +svg3.attr("height");
+  
+  // Map and projection
+  var projection = d3.geoMercator()
+      .center([10,6])            
+      .scale(480)                
+      .translate([ width/2, height/2 ])
+  
+  d3.queue()
+    .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
+    .defer(d3.csv, "mapdata.csv")
+    .await(ready);
+  
+  function ready(error, dataGeo, mapdata) {
+  
+    // scale for bubble size
+    var valueExtent = d3.extent(mapdata, function(d) { return +d.n; })
+    var size = d3.scaleSqrt()
+      .domain(valueExtent)
+      .range([ 1, 50]) 
+  
+    // map
+    svg3.append("g")
+        .selectAll("path")
+        .data(dataGeo.features)
+        .enter()
+        .append("path")
+          .attr("fill", "#b8b8b8")
+          .attr("d", d3.geoPath()
+              .projection(projection)
+          )
+        .style("stroke", "white")
+        .style("opacity", .4)
+  
+    // circles
+    svg3
+      .selectAll("myCircles")
+      .data(mapdata.sort(function(a,b) { return +b.n - +a.n }).filter(function(d,i){ return i<1000 }))
+      .enter()
+      .append("circle")
+        .attr("cx", function(d){ return projection([+d.homelon, +d.homelat])[0] })
+        .attr("cy", function(d){ return projection([+d.homelon, +d.homelat])[1] })
+        .attr("r", function(d){ return size(+d.n) })
+        .style("fill", "#Bdba85")
+        .attr("stroke-width", 1)
+        .attr("fill-opacity", .7)
+  
+  
+  
+    // text
+    svg3
+      .append("text")
+        .attr("text-anchor", "end")
+        .style("fill", "black")
+        .attr("x", width - 10)
+        .attr("y", height - 30)
+        .attr("width", 90)
+        .html("Events per capita")
+        .style("font-size", 14)
+  
+  
+    
+  }
+  
+  </script>
